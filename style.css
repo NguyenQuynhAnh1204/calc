@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    max-width: 455px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    color: #000;
+}
+
+.memo {
+    margin: 0px 8px;
+    height: 140px;
+    border-bottom: 1px solid #bcbbbb;
+}
+
+.input {
+    margin: 8px;
+    display: flex;
+    justify-content: flex-end;
+    font-family: monospace;
+}
+
+.input p {
+    font-size: 32px;
+}
+
+.menu {
+    display: none;
+    width: 150px;
+    background-color: #ccc;
+    position: absolute;
+    bottom: 135px;
+    left: 435px;
+    border-radius: 5px;
+}
+
+.menu .tool {
+    z-index: 1;
+}
+
+.tool-item {
+    list-style-type: none;
+}
+
+
+
+.butt {
+    width: 100%;
+    height: 100%;
+    background-color: #f2f2f2;
+    color: #000;
+    
+}
+
+.butt-item {
+    width: 80px;
+    height: 50px;
+    font-size: 24px;
+    color: #2b508d;
+    background-color: #f2f2f4;
+    margin: 4px;
+    border: 1px solid #cfcfd1;
+}
+
+.butt-item:active {
+    background-color: #9e4512;
+}
+
+.butt-math {
+    color: #000;
+    background-color: #d7dde0;
+}
+
+.kebab {
+    position: relative;
+    top: 90px;
+    margin: 8px;
+    padding: 5px 14px;
+    border-radius: 99px;
+    background-color: #fff;
+    border: none;
+    font-size: 20px;
+}
+
+.kebab:active {
+    background-color: #ccc;
+}
+
+
