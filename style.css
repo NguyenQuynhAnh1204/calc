@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .container {
@@ -24,15 +25,22 @@
 }
 
 .input {
-    margin: 8px;
-    height: 30px;
-    display: flex;
-    justify-content: flex-end;
+    padding: 8px;
+    min-height: 46px;
+    width: 100%;
     font-family: monospace;
 }
 
-.input p {
+.input {
     font-size: 24px;
+}
+
+.input .s-text {
+    font-size: 20px;
+}
+
+.input .mini-text {
+    font-size: 18px;
 }
 
 .menu {
@@ -53,7 +61,12 @@
     list-style-type: none;
 }
 
-
+#expression {
+    text-align: justify; 
+    text-align-last: right;
+    word-wrap: break-word;
+    max-width: 424px;
+}
 
 .butt {
     width: 100%;
@@ -74,6 +87,10 @@
 }
 
 .butt-item:active {
+    background-color: #9e4512;
+}
+
+.butt-item.active {
     background-color: #9e4512;
 }
 

@@ -1,23 +1,31 @@
+
 const buttsInt = Array.from(document.getElementsByClassName('butt-int'));
 const buttsMath = Array.from(document.getElementsByClassName('butt-math'));
-const expressionEl = document.getElementById('expression');
+const expressionEl = document.getElementById("expression");
+const doc = document.body;
 
 //definition const for btn math name
 const PLUS = 'plus';
 const MINUS = 'minus';
 const MULTI = 'multi';
 const DIVIDE = 'divide';
+const PERCENT = 'percent';
 const EQUAL = 'equal';
+const ENTER = "Enter";
 const CLEAR = 'clear';
-const DELETE = 'delete';
+const DELETE = 'Backspace';
 const ABSOLUTE = 'absolute';
+const DOT = "dot";
 
 //definition const for btn math symbol
 const PLUS_SYMBOL = '+';
 const MINUS_SYMBOL = "-";
+const MULTI_SYMBOL_SHOW = "x";
 const MULTI_SYMBOL = "*";
 const DIVIDE_SYMBOL = "/";
+const PERCENT_SYMBOL = "%";
 const EQUAL_SYMBOL = "=";
+const DOT_SYMBOL = ".";
 const WhITE_SPACE = ' ';
 
 
@@ -27,18 +35,33 @@ let expression = '';
 if (buttsInt.length > 0 && buttsInt.length <= 10) {
 	buttsInt.forEach(btn => {
 		btn.addEventListener('click', events => {
-            console.log(btn);
 			onClickBtnNumbersPad(events, btn);
 		});
 	});
 } else console.warn('Please check number pad!!');
 
-
-
-
 //add events keydown number pad ...
+doc.addEventListener("keydown", e => {
+    const number = +e.key;
+    if(number === NaN) return;
+    buttsInt.find(item => {
+        if(+item.getAttribute("value") === number) {
+            item.classList.add("active");
+            onClickBtnNumbersPad(e, item);
+        }
+    }
+    )
+})
 
-
+doc.addEventListener("keyup", e => {
+    const number = +e.key;
+    if(number === NaN) return;
+    buttsInt.find(item => {
+        if(+item.getAttribute("value") === number) {
+            item.classList.remove("active");
+        }
+    });
+})
 
 function onClickBtnNumbersPad(eventArgs, button) {
     if (!button) return;
@@ -47,18 +70,166 @@ function onClickBtnNumbersPad(eventArgs, button) {
     updateExpressionElement();
 }
 
-
-
-
 //add events click for btns Math
 buttsMath.forEach(btn => {
 	btn.addEventListener('click', eventArgs => {
-        console.log(btn);
 		onClickBtnMath(eventArgs, btn);
 	});
 });
 
 //add events keydown maths...
+doc.addEventListener("keydown", e => {
+    const math = e.key;
+    switch(math) {
+        case PLUS_SYMBOL: 
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === PLUS) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case MINUS_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === MINUS) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case DIVIDE_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === DIVIDE) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case MULTI_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === MULTI) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case PERCENT_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === PERCENT) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case DOT_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === DOT) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case EQUAL_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === EQUAL) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case ENTER: 
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === EQUAL) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case DELETE:
+            buttsMath.find(item => {
+                if (item.getAttribute("value") === DELETE) {
+                    item.classList.add("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+        default:
+            break;
+    }
+})
+
+
+doc.addEventListener("keyup", (e) => {
+    const math = e.key;
+    switch(math) {
+        case PLUS_SYMBOL: 
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === PLUS) {
+                    item.classList.remove("active");
+                }
+            })
+            break;
+        case MINUS_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === MINUS) {
+                    item.classList.remove("active");
+                }
+            })
+            break;
+        case DIVIDE_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === DIVIDE) {
+                    item.classList.remove("active");
+                }
+            })
+            break;
+        case MULTI_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === MULTI) {
+                    item.classList.remove("active");
+                }
+            })
+            break;
+        case PERCENT_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === PERCENT) {
+                    item.classList.remove("active");
+                }
+            })
+            break;
+        case DOT_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === DOT) {
+                    item.classList.remove("active");
+                }
+            })
+            break;
+        case EQUAL_SYMBOL:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === EQUAL) {
+                    item.classList.remove("active");
+                }
+            })
+            break;
+        case ENTER: 
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === EQUAL) {
+                    item.classList.remove("active");
+                    onClickBtnMath(e, item);
+                }
+            })
+            break;
+        case DELETE:
+            buttsMath.find(item => {
+                if(item.getAttribute("value") === DELETE) {
+                    item.classList.remove("active");
+                }
+            })
+            break;
+        default:
+            break;
+    }
+})
+
 
 
 function onClickBtnMath(eventArgs, button) {
@@ -84,7 +255,7 @@ function onClickBtnMath(eventArgs, button) {
             if (!isValid) break;
             expression = expression.trim();
             expression += WhITE_SPACE;
-            expression += MULTI_SYMBOL;
+            expression += MULTI_SYMBOL_SHOW;
             expression += WhITE_SPACE;
             break;
         case DIVIDE:
@@ -94,15 +265,34 @@ function onClickBtnMath(eventArgs, button) {
             expression += DIVIDE_SYMBOL;
             expression += WhITE_SPACE;
             break;
+        case PERCENT:
+            if(!isValid) break;
+            expression = expression.trim();
+            expression += PERCENT_SYMBOL;
+            expression += WhITE_SPACE;
+            break;
+        case DOT:
+            if(!isValid) break;
+            expression = expression.trimEnd();
+            expression += DOT_SYMBOL;
+            break;
 		case DELETE:
+            if(!expression) return;
             expression = expression.trimEnd();
             expression = expression.slice(0, -1);
+            expression = expression.trimEnd();
+            const lastCharacter = expression[expression.length - 1];
+            if (lastCharacter == PLUS_SYMBOL || lastCharacter == MINUS_SYMBOL || lastCharacter == DIVIDE_SYMBOL || lastCharacter == MULTI_SYMBOL_SHOW) {
+                expression += WhITE_SPACE;
+            }
             break;
         case CLEAR:
 			expression = '';
 			break;
         case EQUAL:
             if(!expression)return;
+            expression = expression.replace(MULTI_SYMBOL_SHOW, MULTI_SYMBOL);
+            expression = expression.replace(PERCENT_SYMBOL, " / 100");
             expression = String(eval(expression));
             break;
 		default:
@@ -127,7 +317,13 @@ function validateNextMath(pSymbol) {
             isValid = lastCharacter !== DIVIDE_SYMBOL;
             break;
         case MULTI:
-            isValid = lastCharacter !== MULTI_SYMBOL;
+            isValid = lastCharacter !== MULTI_SYMBOL_SHOW;
+            break;
+        case DOT:
+            isValid = lastCharacter !== DOT_SYMBOL;
+            break;
+        case PERCENT:
+            isValid = lastCharacter !== PERCENT_SYMBOL;
             break;
 		default:
 			break;
@@ -137,5 +333,11 @@ function validateNextMath(pSymbol) {
 
 function updateExpressionElement() {
 	if (!expressionEl) return;
+    if(expression.length >= 30) {
+        expressionEl.classList.add("s-text");
+    }
+    if(expression.length >= 40) {
+        expressionEl.classList.add("mini-text");
+    }
 	expressionEl.innerText = expression;
 }
