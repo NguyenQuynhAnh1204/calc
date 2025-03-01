@@ -1,4 +1,3 @@
-
 const buttsInt = Array.from(document.getElementsByClassName('butt-int'));
 const buttsMath = Array.from(document.getElementsByClassName('butt-math'));
 const expressionEl = document.getElementById("expression");
@@ -53,6 +52,8 @@ doc.addEventListener("keydown", e => {
     )
 })
 
+
+// add event keyup number
 doc.addEventListener("keyup", e => {
     const number = +e.key;
     if(number === NaN) return;
@@ -63,6 +64,8 @@ doc.addEventListener("keyup", e => {
     });
 })
 
+
+// add event click number
 function onClickBtnNumbersPad(eventArgs, button) {
     if (!button) return;
     const number = button.getAttribute('value');
@@ -157,7 +160,7 @@ doc.addEventListener("keydown", e => {
     }
 })
 
-
+// add event keyup btn math
 doc.addEventListener("keyup", (e) => {
     const math = e.key;
     switch(math) {
@@ -235,49 +238,53 @@ doc.addEventListener("keyup", (e) => {
 function onClickBtnMath(eventArgs, button) {
 	if (!button) return;
 	const math = button.getAttribute('value');
-    const isValid = validateNextMath(math);
+    const isValidLastChar = validateNextMath(math);
 	switch (math) {
         case PLUS:
-			if (!isValid) break;
+			// if (!isValidLastChar) break;
 			expression = expression.trim(); // always remove leading spaces and terminate space in expression when add math symbol
 			expression += WhITE_SPACE;
 			expression += PLUS_SYMBOL;
 			expression += WhITE_SPACE;
 			break;
 		case MINUS:
-            if (!isValid) break;
+            // if (!isValidLastChar) break;
 			expression = expression.trim();
 			expression += WhITE_SPACE;
 			expression += MINUS_SYMBOL;
 			expression += WhITE_SPACE;
 			break;
         case MULTI:
-            if (!isValid) break;
+            if (!isValidLastChar) break;
+            if(isEmpty(expression)) break;
             expression = expression.trim();
             expression += WhITE_SPACE;
             expression += MULTI_SYMBOL_SHOW;
             expression += WhITE_SPACE;
             break;
         case DIVIDE:
-            if (!isValid) break;
+            if (!isValidLastChar) break;
+            if(isEmpty(expression)) break;
             expression = expression.trim();
             expression += WhITE_SPACE;
             expression += DIVIDE_SYMBOL;
             expression += WhITE_SPACE;
             break;
         case PERCENT:
-            if(!isValid) break;
+            if(!isValidLastChar) break;
+            if(isEmpty(expression)) break;
             expression = expression.trim();
             expression += PERCENT_SYMBOL;
             expression += WhITE_SPACE;
             break;
         case DOT:
-            if(!isValid) break;
+            if(!isValidLastChar) break;
+            if(isEmpty(expression)) break;
             expression = expression.trimEnd();
             expression += DOT_SYMBOL;
             break;
 		case DELETE:
-            if(!expression) return;
+            if(isEmpty(expression)) break;
             expression = expression.trimEnd();
             expression = expression.slice(0, -1);
             expression = expression.trimEnd();
@@ -290,7 +297,7 @@ function onClickBtnMath(eventArgs, button) {
 			expression = '';
 			break;
         case EQUAL:
-            if(!expression)return;
+            if(isEmpty(expression)) break;
             expression = expression.replace(MULTI_SYMBOL_SHOW, MULTI_SYMBOL);
             expression = expression.replace(PERCENT_SYMBOL, " / 100");
             expression = String(eval(expression));
@@ -301,34 +308,45 @@ function onClickBtnMath(eventArgs, button) {
 	updateExpressionElement();
 }
 
+
+function isEmpty(express) {
+    return express === "";
+}
+
 function validateNextMath(pSymbol) {
     //check something
-	let isValid = false;
+	let isValidLastChar = false;
     let temp = expression.trim();
     const lastCharacter = temp[temp.length - 1];
 	switch (pSymbol) {
-		case PLUS:
-			isValid = lastCharacter !== PLUS_SYMBOL;
-			break;
-        case MINUS:
-            isValid = lastCharacter !== MINUS_SYMBOL;
-            break;
+		// case PLUS:
+		// 	isValidLastChar = (lastCharacter !== PLUS_SYMBOL);
+		// 	break;
+        // case MINUS:
+        //     isValidLastChar = lastCharacter !== MINUS_SYMBOL;
+        //     break;
         case DIVIDE:
-            isValid = lastCharacter !== DIVIDE_SYMBOL;
+            isValidLastChar = lastCharacter !== DIVIDE_SYMBOL;
             break;
         case MULTI:
-            isValid = lastCharacter !== MULTI_SYMBOL_SHOW;
+            isValidLastChar = lastCharacter !== MULTI_SYMBOL_SHOW;
             break;
         case DOT:
-            isValid = lastCharacter !== DOT_SYMBOL;
+            isValidLastChar = lastCharacter !== DOT_SYMBOL;
             break;
         case PERCENT:
-            isValid = lastCharacter !== PERCENT_SYMBOL;
+            isValidLastChar = lastCharacter !== PERCENT_SYMBOL;
             break;
 		default:
 			break;
 	}
-	return isValid;
+	return isValidLastChar;
+}
+
+function validateQuantityMath() {
+    const temp = expression;
+    console.log(typeof temp.slice(-2, -1));
+
 }
 
 function updateExpressionElement() {
@@ -341,3 +359,12 @@ function updateExpressionElement() {
     }
 	expressionEl.innerText = expression;
 }
+
+doc.addEventListener("keydown", (e) => {
+    if(e.key === "D") {
+        doc.classList.toggle("dark")
+    }
+    return;
+})
+
+

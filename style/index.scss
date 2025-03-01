@@ -1,0 +1,135 @@
+@import "global";
+@import "util";
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: $w-full;
+    height: 100vh;
+    @include display-center;
+}
+
+.main {
+    max-width: 455px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    color: $color-black;
+}
+
+.memo {
+    @include spacing(0 8px, 0);
+    height: 140px;
+    border-bottom: 1px solid #bcbbbb;
+}
+
+.input {
+    min-height: 46px;
+    width: $w-full;
+    font-family: $font-family;
+    @include spacing(0, 8px);
+    @include font-size(24px);
+
+    .s-text {
+        @include font-size(20px);
+    }
+
+    .mini-text {
+        @include font-size(18px);
+    }
+
+    #expression {
+        text-align: justify; 
+        text-align-last: right;
+        word-wrap: break-word;
+        max-width: 424px;
+    }    
+}
+
+.menu {
+    display: none;
+    width: 150px;
+    background-color: $color-bg;
+    position: absolute;
+    bottom: 135px;
+    left: 435px;
+    border-radius: 5px;
+    .tool {
+        z-index: 1;  
+    }
+    .tool-item {
+        list-style-type: none;
+    }
+}
+
+.butt {
+    width: $w-full;
+    height: $h-full;
+    background-color: $color-bg-but;
+    color: $color-black;
+    .butt-item {
+        width: 80px;
+        height: 50px;
+        border: 1px solid #cfcfd1;
+        color: $color-butt;
+        background-color: $color-bg-butNumber;
+        @include spacing(4px, 0);
+        @include font-size(24px);
+    }
+    .butt-item:active {
+        background-color: $color-bg-active;
+    }
+    
+    .butt-item.active {
+        background-color: $color-bg-active;
+    }
+    
+    .butt-math {
+        color: $color-black;
+        background-color: $color-bg-butMath;
+    }
+}
+
+.kebab {
+    position: relative;
+    top: 90px;
+    border-radius: 99px;
+    background-color: $color-white;
+    border: none;
+    @include spacing(8px, 5px 14px);
+    @include font-size(20px);
+    
+}
+
+.kebab:active {
+    background-color: $color-bg;
+}
+
+.dark {
+    background-color: $color-dark;
+    .main {
+        background-color: $color-dark-box;
+    }
+    .butt {
+        background-color: $color-dark-butt;
+        .butt-int {
+            background-color: $color-dark-butt-number;
+        }
+        .butt-math {
+            background-color: $color-dark-butt-math;
+        }
+    }
+    .input {
+        #expression {
+            color: $color-dark-text;
+        }
+    }
+    .kebab {
+        background-color: $color-dark-box;
+        color: $color-white;
+    }
+    .kebab:active {
+        background-color: $color-bg;
+        color: $color-dark-box;
+    }
+}

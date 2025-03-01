@@ -1,0 +1,15 @@
+
+@mixin spacing($margin, $padding) {
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin font-size($font-size) {
+    font-size: $font-size;
+}
+
+@mixin display-center () {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
