@@ -361,7 +361,7 @@ function updateExpressionElement() {
 }
 
 doc.addEventListener("keydown", (e) => {
-    if(e.key === "D") {
+    if(e.key === "F") {
         doc.classList.toggle("dark")
     }
     return;
